@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- https://codepen.io/danielkvist/pen/LYNVyPL -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" >
+  <title>login</title>
+  <link rel="stylesheet" type="text/css" href="../css/login.css">
+</head>
+
+<body>
+
+  <div :class="!current?'right-panel-active':''" class="container" id="app">
+
+    <!-- Student Sign In -->
+    <div class="container__form container--signup" >
+      <div class="form" id="form2">
+        <h2 class="form__title">Sign In(Password)</h2>
+        <input type="text" placeholder="StudentName" v-model="studentForm.firstname" class="input" />
+        <input type="password" placeholder="Password" v-model="studentForm.password" class="input" />
+        <a href="ProfileForm.html" class="link">Don't have an account? Register here</a>
+        <button class="btn" @click="StudentSubmit">Sign In</button>
+      </div>
+    </div>
+    <!-- Email Sign In -->
+    <div class="container__form container--signin">
+      <form action="#" class="form" id="form1">
+        <h2 class="form__title">Sign In(verification code)</h2>
+        <input type="text" placeholder="Email" v-model="mail.sendedName"class="input" />
+        <input type="code" placeholder="verification code" v-model="mail.code"class="input" />
+        <el-button type="warning" round @click="CodeSendRequest">send verification code</el-button>
+
+        <button class="btn" @click="CodeVerification">Sign In</button>
+      </form>
+    </div>
+
+    <!-- Overlay -->
+    <div class="container__overlay">
+      <div class="overlay">
+        <div class="overlay__panel overlay--left">
+          <button class="btn" id="signIn" @click="current=true">Authentication</button>
+        </div>
+        <div class="overlay__panel overlay--right">
+          <button class="btn" id="signUp" @click="current=false">Login By Password</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</body>
+
+
+<script src="../js/vue.js"></script>
+<script src="../js/axios-0.18.0.js"></script>
+<script src="../element-ui/lib/index.js"></script>
+<link rel="stylesheet" href="../element-ui/lib/theme-chalk/index.css">
+<script>
+  new Vue({
+    el:"#app",
+    data(){
+      return{
+        current: false,
+        studentForm:{
+          firstname: "Phoebe",
+          password: "123"
+        },
+        staffForm:{
+          id:"",
+          password:"",
+          email:""
+        },
+        mail:{
+          sendedName:"",
+          code:""
+        }
+      }
+
+    },
+    methods:{
+      StudentSubmit(){
+        axios({
+          method:"POST",
+          url:"http://localhost/students/login",
+          data: this.studentForm
+        })
+        .then(res =>{
+          /*login fail,show message*/
+          if(res.data.code !== 1){
+            this.$message.error('Invalid userName or password');
+          }
+          /*login success,save data to localStorage*/
+          else{
+            localStorage.setItem("studentInfo",JSON.stringify(res.data.data))
+            console.log(res.data.data)
+            window.location.href = "/pages/index.html"
+
+          }
+        })
+      },
+      codeSend(){
+        axios({
+          method:"POST",
+          url: "http://localhost/mail/sendCode",
+          data: this.mail
+        })
+        .then(res =>{
+          if(res.data.code === 1){
+            this.$message.success("verification code has been sent")
+          }
+          
+        })
+
+      },
+      CodeSendRequest(){
+        //whether user exists
+        axios({
+          method: "GET",
+          url: "http://localhost/students/UserValidate?userEmail=" + this.mail.sendedName,
+        })
+        .then(res =>{
+          if(res.data.code === 1){
+            //if email is valid, send verification code and save studentInfo session
+            localStorage.setItem("studentInfo",JSON.stringify(res.data.data))
+            this.codeSend()
+          }else{
+            this.$message.error("invalid email")
+          }
+
+        })
+
+      },
+      CodeVerification(){
+        axios({
+          method: "GET",
+          url: "http://localhost/mail/checkCode?code="+ this.mail.code
+        })
+        .then(res =>{
+          if(res.data.code !== 1){
+            this.$message.error(res.data.msg)
+          }
+          if(res.data.code === 1){
+            window.location.href = "/pages/index.html"
+          }
+
+        })
+
+      }
+
+    }
+  })
+</script>
+
+</html>

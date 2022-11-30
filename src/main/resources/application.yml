@@ -1,0 +1,32 @@
+spring:
+  mail:
+    host: smtp.qq.com
+    username: 3413813083@qq.com
+    password: cszjpzjeijjmcidf
+    default-encoding: UTF-8
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql:///tas_db?characterEncoding=UTF-8&serverTimezone=Australia/Brisbane
+
+    username: root
+    password: langji20967096
+  thymeleaf:
+    prefix: classpath:/static/
+    suffix: .html
+    encoding: UTF-8
+    cache: false
+    enabled: true
+    servlet:
+      content-type: text/html
+
+server:
+  port: 80
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#url: jdbc:mysql:///tas_db?serverTimeZone=UTC
+
+
+
+

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>HomePage</title>
+</head>
+<body>
+<!--Navigation-->
+<div id="app">
+    <section class="section">
+        <div class="container">
+            <div class="row align-items-center flex-row-reverse">
+                <div class="row p-lg-0 p-sm-0"><h2>Welcome,</h2></div>
+                <div class="row p-lg-0 p-sm-0"><h2><span
+                        class="text-warning">  <i>{{PersonalInfo.firstname}} {{PersonalInfo.surname}} </i> </span></h2>
+                </div>
+                <div class="rectangle" style="position:absolute; top: 120px; left: 500px;"></div>
+
+                <!--Status display-->
+                   <!--1. Just register, haven't click join button-->
+                <h2 v-if="this.PersonalInfo.groupStatus === 0 && this.PersonalInfo.status === 0" class="text-light"
+                    style="position:absolute; top: 150px; left: 836px;">Set status</h2>
+                   <!--2. Create the team, STATUS change to FORM -->
+                <span v-if="this.PersonalInfo.status === 2" class="text-light" style="position:absolute; top: 150px; left:860px; font-size: 30px; white-space: nowrap;">
+                    STATUS:<span style="color: gold">FORM</span></span>
+                   <!--3. Join the team successfully or haven't join a team but clicked join button-->
+                <span v-if="this.PersonalInfo.status === 1" class="text-light" style="position:absolute; top: 150px; left:860px; font-size: 30px; white-space: nowrap;">
+                    STATUS:<span style="color: gold">JOIN</span></span>
+
+                <!--Button display-->
+                <button v-if="this.PersonalInfo.groupStatus === 0" class="more_det_button"
+                        style="position:absolute;left: 760px; top: 220px; white-space: nowrap; font-size: 25px;width: 160px;height: 70px"
+                        @click="JumpToSearchPageAndChangeStatus">
+                    Join
+                </button>
+                <button v-if="this.PersonalInfo.groupStatus === 0" class="more_det_button"
+                        style="position:absolute;left: 970px; top: 220px; white-space: nowrap; padding: 15px 45px 15px 45px; font-size: 25px;width: 160px;height: 70px"
+                        @click="FormTeam">
+                    Form
+                </button>
+
+
+
+
+<!--                <label v-if="this.PersonalInfo.groupStatus === 1" class="text-light"-->
+<!--                       style="position:absolute; top: 150px; left:860px; font-size: 30px; white-space: nowrap;">-->
+<!--                    <span style="color: gold">STATUS:FORM</span>-->
+<!--                    <span v-if="this.PersonalInfo.status === 2" style="color: gold">FORM</span>-->
+<!--                    <span v-if="this.PersonalInfo.status === 1" style="color: gold">JOIN</span>-->
+<!--                    <span v-if="this.PersonalInfo.status === 0" style="color: gold">None</span>-->
+                    <!--                    <span v-if="this.PersonalInfo.whetherCreate !== true" style="color: gold">JOIN</span>-->
+<!--                </label>-->
+
+                <button v-if="this.PersonalInfo.groupStatus === 1" class="more_det_button"
+                        style="position:absolute;left: 880px; top: 220px; white-space: nowrap; font-size: 20px;width: 160px;height: 70px"
+                        @click="JumpToTeamList">
+                    Team <br> Dashboard
+                </button>
+
+
+                <!--Label display-->
+                <!--1.when the student just registered-->
+                <label v-if="this.PersonalInfo.groupStatus === 0 && this.PersonalInfo.status === 0" class="text-light"
+                       style="position:absolute; top: 320px; left:810px; font-size: 20px; white-space: nowrap;">
+                    Set your status to join or form a team!
+                </label>
+
+                <!--the student is a HOST-->
+                <label v-if="this.PersonalInfo.status === 2" class="text-light"
+                       style="position:absolute; top: 320px; left:810px; font-size: 20px; white-space: nowrap;">
+                    Manage your Team as the Host!
+                </label>
+                <!--the student join a team successfully-->
+                <label v-if="this.PersonalInfo.status === 1 && this.PersonalInfo.groupId !== 0" class="text-light"
+                       style="position:absolute; top: 320px; left:810px; font-size: 20px; white-space: nowrap;">
+                    You can check Team Information now!
+                </label>
+                <!--the student is in a process of joining a team-->
+                <label v-if="this.PersonalInfo.status === 1 && this.PersonalInfo.groupId === 0" class="text-light"
+                       style="position:absolute; top: 320px; left:810px; font-size: 20px; white-space: nowrap;">
+                    You can search for teams now!
+
+                </label>
+
+
+                <div class="rectangle" style="position:absolute; top: 420px; left: 500px;">
+                </div>
+                <h2 class="text-light" style="position:absolute; top: 450px; left: 850px;">Quick links</h2>
+                <div class="media">
+
+                    <button class="more_det_button"
+                            style="position:absolute;left: 960px; top: 530px; white-space: nowrap;"
+                            @click="JumpToSearchPage">
+                        <i class="fa fa-search"></i>Search
+                    </button>
+                    <button class="more_det_button"
+                            style="position:absolute;left: 820px; top: 530px; white-space: nowrap;"
+                            @click="JumpToMessagePage">
+                        <i class="fa fa-envelope"></i> Message
+                    </button>
+                </div>
+
+
+                <div class="rectangle1" style="position:absolute; top: 120px; left: 100px; white-space: nowrap;">
+                </div>
+                <h3 class="text-light" style="position:absolute; top: 150px; left: 130px;">Personal details</h3>
+                <div class="media">
+                    <label class="text-light"
+                           style="position:absolute; top: 250px; left:160px; font-size: 15px; white-space: nowrap;">
+                        Name:
+                    </label>
+                    <p class="text-light"
+                       style="position: absolute; top: 250px; left: 220px; font-size: 15px; white-space: nowrap;">
+                        {{PersonalInfo.firstname}}
+                    </p>
+                    <label class="text-light"
+                           style="position:absolute; top: 280px; left: 150px; font-size: 15px; white-space: nowrap;">
+                        &nbsp;&nbsp;Major:
+                    </label>
+                    <p class="text-light"
+                       style="position: absolute; top: 280px; left: 220px; font-size: 15px; white-space: nowrap;">
+                        {{PersonalInfo.major}}
+                    </p>
+                    <label class="text-light"
+                           style="position:absolute; top: 310px; left: 155px; font-size: 15px; white-space: nowrap;">
+                        &nbsp;Team:
+                    </label>
+                    <p class="text-light"
+                       style="position: absolute; top: 310px; left: 220px; font-size: 15px; white-space: nowrap;"
+                       v-if="PersonalInfo.groupStatus === 1">
+                        {{this.PersonalInfo.groupId}}
+                    </p>
+                    <p class="text-light"
+                       style="position: absolute; top: 310px; left: 220px; font-size: 15px; white-space: nowrap;"
+                       v-if="PersonalInfo.groupStatus === 0">
+                        No team
+                    </p>
+                    <button class="more_det_button" type="button" style="padding-top: 0px; padding-left: 15px; padding-right: 15px;padding-bottom: 0px; position:absolute; top: 350px;
+                     left: 175px; white-space: nowrap" @click="JumpToPersonDetail">
+                        MORE
+                    </button>
+                </div>
+                <div STYLE="background-color: gray; height:2px; width:360px; position: absolute; left: 100px; top:410px"></div>
+                <h3 class="text-light" style="position:absolute; top: 430px; left: 135px;">Your messages</h3>
+                <div class="media">
+                    <div id="wrapper" class="text-light"
+                         style="position:absolute; top: 500px; left: 125px; font-size: 15px; white-space: nowrap;">
+                        <ul>
+                            <span v-if="this.PersonalUnreadMessage === null">No unread message</span>
+                            <li v-for="(item, i) in PersonalUnreadMessage">Unread: One invitation at
+                                {{item.invitationStringTime}}
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+    .rectangle {
+        width: 900px;
+        height: 280px;
+        line-height: 500px;
+        font-size: 50px;
+        color: #fff;
+        text-align: center;
+        background: #318ce7;
+    }
+
+    .rectangle1 {
+        width: 360px;
+        height: 580px;
+        line-height: 500px;
+        font-size: 50px;
+        color: #fff;
+        text-align: center;
+        background: #318ce7;
+    }
+
+    #wrapper {
+
+        overflow-y: auto;
+
+        max-height: 190px;
+        max-width: 330px;
+    }
+
+    body {
+        overflow-x: auto;
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        max-width: fit-content;
+    }
+
+    .more_det_button {
+        background-color: #fff;
+        border: none;
+        color: black;
+        padding: 10px 20px 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    .more_det_button:hover {
+        background-color: black;
+        color: white;
+    }
+</style>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+<script src="../js/axios-0.18.0.js"></script>
+<script src="../js/vue.js"></script>
+<script src="../element-ui/lib/index.js"></script>
+<link rel="stylesheet" href="../element-ui/lib/theme-chalk/index.css">
+<script>
+    Vue.config.productionTip = false;
+    new Vue({
+        el: "#app",
+        data() {
+            return {
+                PersonalInfo: {},
+                PersonalUnreadMessage: {},
+                stuID1: '1001',
+                stuID2: '56f',
+                stuID3: 'fhf',
+                stuID4: 'fghh',
+                teamData: [],
+                memberData: [
+                    {
+                        firstname: 'no member,'
+                    },
+                    {
+                        firstname: 'no member,'
+                    },
+                    {
+                        firstname: 'no member,'
+                    },
+                    {
+                        firstname: 'no member,',
+                    },
+                ],
+            }
+        },
+        created() {
+            const studentInfo = window.localStorage.getItem("studentInfo")
+            if (studentInfo) {
+                this.PersonalInfo = JSON.parse(studentInfo)
+            }
+            this.init()
+
+        },
+        methods: {
+            init() {
+                this.getPersonalInfo()
+                this.getPersonalUnreadMessage()
+            },
+            getPersonalInfo() {
+                axios({
+                    method: "GET",
+                    url: "http://localhost/students/getStudentById?SId=" + this.PersonalInfo.id
+                })
+                    .then(res => {
+                        if (res.data.code === 1) {
+                            this.PersonalInfo = res.data.data
+                        }
+
+                    })
+            },
+            getPersonalUnreadMessage() {
+                axios({
+                    method: "GET",
+                    url: "http://localhost/invitations/getUnreadMessage?Id=" + this.PersonalInfo.id
+                })
+                    .then(res => {
+                        this.PersonalUnreadMessage = res.data.data
+                    })
+
+            },
+
+            handleSelect(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            JumpToPersonDetail() {
+                window.location.href = "PersonalDetail.html"
+            },
+            JumpToMessagePage() {
+                window.location.href = "Message.html"
+            },
+            JumpToSearchPageAndChangeStatus() {
+                axios({
+                    method: "GET",
+                    url: "http://localhost/students/getStudentByIdThroughJoin?SId=" + this.PersonalInfo.id
+                })
+                    .then(res => {
+                        window.location.href = "SearchPage.html"
+                    })
+            },
+            JumpToTeamList() {
+                window.location.href = "TeamDashboard.html"
+            },
+            JumpToSearchPage(){
+                window.location.href = "SearchPage.html"
+            },
+            FormTeam() {
+                this.$confirm('Are you decided to Form?', 'Tips', {
+                    confirmButtonText: 'Confirm',
+                    cancelButtonText: 'Cancel',
+                    type: 'primary'
+                }).then(()=>{
+                    axios({
+                        method: "POST",
+                        url: "http://localhost/team/create?" + "studentID=" + this.PersonalInfo.id,
+                    })
+                        .then(res => {
+                            if (res.data.data !== null) {
+                                window.location.href = "/pages/HomePage.html"
+                            }
+                        })
+                })
+
+
+            },
+
+
+        }
+
+
+    })
+    ;
+</script>
+</html>

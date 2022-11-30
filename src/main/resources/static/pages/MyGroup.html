@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MyGroup</title>
+</head>
+<body>
+<!--Navigation-->
+<div id="app">
+    <!--Display Team Status(Create team or find member)-->
+        <el-row>
+            <el-button v-if="this.studentDetail.groupStatus === 1 &&( this.memberData[0] == null || this.memberData[1] == null || this.memberData[2] == null || this.memberData[3] == null)" type="primary" round @click="findMember">Find member
+            </el-button>
+            <span v-if="this.studentDetail.groupStatus === 1 && this.memberData[0] !== null && this.memberData[1] !== null && this.memberData[2] !== null && this.memberData[3] !== null" style="color: #82848a">Team Full</span>
+            <div></div>
+            <span v-if="this.studentDetail.groupStatus === 1" style="color: #dd6161">You already had a team !</span>
+
+            <el-button v-if="this.studentDetail.groupStatus === 0" type="primary" round @click="createTeam">Create Team
+            </el-button>
+            <el-button v-if="this.studentDetail.groupStatus === 0" type="success" round @click="findTeam">Find Team
+            </el-button>
+            <div></div>
+            <span v-if="this.studentDetail.groupStatus === 0" style="color: #dd6161">You need a team, Create a team or find a team !</span>
+        </el-row>
+    <!--Team Table-->
+    <h3 align="center">Team general Information</h3>
+    <template>
+        <el-table
+                :data="teamData"
+                style="width: 100%"
+                :row-class-name="tableRowClassName">
+            <el-table-column
+                    prop="id"
+                    label="TeamId"
+            >
+            </el-table-column>
+            <el-table-column
+                    prop="studentName1"
+                    label="StudentName"
+            >
+            </el-table-column>
+            <el-table-column
+                    prop="studentName2"
+                    label="StudentName"
+            >
+            </el-table-column>
+            <el-table-column
+                    prop="studentName3"
+                    label="StudentName"
+            >
+            </el-table-column>
+            <el-table-column
+                    prop="studentName4"
+                    label="StudentName"
+            >
+            </el-table-column>
+        </el-table>
+    </template>
+    <!--Withdraw Button-->
+    <br><br>
+    <el-button type="danger" v-if="this.studentDetail.groupStatus === 1" @click="withdraw" round>Withdraw team
+    </el-button>
+    <el-button type="primary" v-if="this.studentDetail.groupStatus === 1" @click="displayEditDialogue" round>Edit Team
+        Description
+    </el-button>
+    <!--Team Detail Table-->
+    <h3 align="center">Member Information Details</h3>
+    <template>
+        <el-table
+                :data="memberData"
+                stripe
+                style="width: 100%">
+            <el-table-column
+                    prop="id"
+                    label="StudentID"
+            >
+            </el-table-column>
+            <el-table-column
+                    prop="firstname"
+                    label="StudentName"
+            >
+            </el-table-column>
+            <el-table-column
+                    prop="major"
+                    label="Major">
+            </el-table-column>
+            <el-table-column
+                    prop="minor"
+                    label="Minor">
+            </el-table-column>
+            <el-table-column
+                    prop="skills"
+                    label="Skills">
+            </el-table-column>
+        </el-table>
+    </template>
+    <!--dialogue edit team description-->
+    <el-dialog
+            title="Edit Team Introduction"
+            :visible.sync="dialogVisible"
+            width="30%"
+    >
+
+        <textarea style="width: 350px;height: 200px" v-model="teamIntro"></textarea>
+        <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">Cancel</el-button>
+    <el-button type="primary" @click=EditTeamIntroduction>Edit</el-button>
+  </span>
+    </el-dialog>
+
+</div>
+
+
+</body>
+<style>
+    .el-table .warning-row {
+        background: oldlace;
+    }
+
+    .el-table .success-row {
+        background: #f0f9eb;
+    }
+</style>
+<script src="../js/axios-0.18.0.js"></script>
+<script src="../js/vue.js"></script>
+<script src="../element-ui/lib/index.js"></script>
+<link rel="stylesheet" href="../element-ui/lib/theme-chalk/index.css">
+<script>
+    Vue.config.productionTip = false;
+    new Vue({
+        el: "#app",
+        data() {
+            return {
+                studentDetail: {},
+                invitation: {
+                    inviterId: '',
+                    invitedId: '',
+                    invitedTeamId: '',
+                    approved: ''
+                },
+                teamData: [
+                    {
+                        teamIntroduction: '444'
+                    },
+                    {
+
+                        teamIntroduction: '444'
+                    }
+                ],
+                teamIntro: '',
+                memberData: [],
+                stuID1: '1001',
+                stuID2: '56f',
+                stuID3: 'fhf',
+                stuID4: 'fghh',
+                dialogVisible: false
+            }
+        },
+        created() {
+            this.init()
+        },
+        methods: {
+            handleSelect(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            init() {
+                /*get StudentPersonalInfo*/
+                const studentInfo = window.localStorage.getItem("studentInfo")
+                this.studentDetail = JSON.parse(studentInfo)
+                /*get Student TeamStatus*/
+                this.getTeamInfo()
+                /*update groupStatus(After withdraw or create a team)*/
+                this.updateStudentGroupStatus()
+
+            },
+            /*change Student TeamStatus*/
+            createTeam() {
+                if (confirm("confirm create?")) {
+                    axios({
+                        method: "POST",
+                        url: "http://localhost/team/create?" + "studentID=" + this.studentDetail.id,
+                        data: this.invitation
+                    })
+                        .then(res => {
+                            if (res.data.data !== null) {
+                                this.studentDetail.groupStatus = res.data.data.groupStatus
+                                window.location.href = "/pages/MyGroup.html"
+                            }
+                        })
+                }
+
+            },
+            tableRowClassName({row, rowIndex}) {
+                if (rowIndex === 0) {
+                    return 'success-row';
+                }
+
+            },
+            /*update groupStatus(After withdraw or create a team)*/
+            updateStudentGroupStatus() {
+                axios({
+                    method: "GET",
+                    url: "http://localhost/students/getStudentById?SId=" + this.studentDetail.id
+                })
+                    .then(res => {
+                        this.studentDetail.groupStatus = res.data.data.groupStatus
+                        this.studentDetail.groupId = res.data.data.groupId
+                        // this.invitation.inviterId = this.studentDetail.id
+                    })
+            },
+            /*detailed team info*/
+            getTeamInfo() {
+                axios({
+                    method: "GET",
+                    url: "http://localhost/team/getTeamInfo?studentId=" + this.studentDetail.id
+                })
+                    .then(res => {
+                        if (res.data.code === 1) {
+                            this.teamData = res.data.data
+                            this.teamIntro = this.teamData[0].teamIntroduction
+                            this.stuID1 = res.data.data[0].sid1
+                            this.stuID2 = res.data.data[0].sid2
+                            this.stuID3 = res.data.data[0].sid3
+                            this.stuID4 = res.data.data[0].sid4
+                            this.showTeamDetails()
+                        }
+
+                    })
+                    .catch(error => {
+                    });
+            },
+            /*detailed group Info*/
+            showTeamDetails() {
+                axios({
+                    method: "GET",
+                    url: "http://localhost/students/getGroupDetails?stuId1=" + this.stuID1 + "&stuId2=" + this.stuID2
+                        + "&stuId3=" + this.stuID3 + "&stuId4=" + this.stuID4
+                })
+                    .then(res => {
+                        if (res.data.code === 1) {
+                            this.memberData = res.data.data;
+                        }
+                    })
+            },
+            /*student withdraw from team*/
+            withdraw() {
+                this.$confirm('Are you decided to withdraw?', 'Warning', {
+                    confirmButtonText: 'Confirm',
+                    cancelButtonText: 'Cancel',
+                    type: 'warning'
+                }).then(() => {
+                    axios({
+                        method: "POST",
+                        url: "http://localhost/team/withdraw",
+                        data: this.studentDetail
+                    })
+                        .then(res => {
+                            if (res.data.code === 1) {
+                                this.init()
+                                this.memberData = []
+                                this.teamData = []
+                            }
+                        })
+                    this.$message({
+                        type: 'success',
+                        message: 'withdraw success'
+                    });
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: 'Have cancelled'
+                    });
+                });
+
+            },
+            displayEditDialogue() {
+                this.dialogVisible = true
+            },
+            EditTeamIntroduction() {
+                this.teamData[0].teamIntroduction = this.teamIntro
+                axios({
+                    method: "POST",
+                    url: "http://localhost/team/editTeamInfo",
+                    data: this.teamData[0]
+                })
+                    .then(res => {
+                        if (res.data.code === 1) {
+                            this.teamData[0] = res.data.data
+                            this.dialogVisible = false
+                        }
+                        this.$message.success('Edit success');
+                    })
+
+            },
+            GoBackToHomePage() {
+                window.location.href = "TeamDashboard.html"
+            },
+
+
+
+        }
+    })
+    ;
+</script>
+</html>

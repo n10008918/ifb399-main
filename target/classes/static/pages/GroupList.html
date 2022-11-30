@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GroupList</title>
+</head>
+<body>
+<div id="app">
+    <el-button type="primary" @click="JumpToHomePage">Back</el-button>
+    <template>
+        <el-table
+                :data="tableData"
+                border
+                style="width: 100%">
+            <el-table-column
+                    prop="id"
+                    label="GroupID"
+            >
+            </el-table-column>
+            <el-table-column
+                    prop="studentName1"
+                    label="studentName"
+            >
+            </el-table-column>
+            <el-table-column
+                    prop="studentName2"
+                    label="studentName"
+            >
+            </el-table-column>
+            <el-table-column
+                    prop="studentName3"
+                    label="studentName"
+            >
+            </el-table-column>
+            <el-table-column
+                    prop="studentName4"
+                    label="studentName"
+            >
+            </el-table-column>
+
+        </el-table>
+    </template>
+
+    <!--Pagination(Teams Table)-->
+    <el-pagination
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="currentPage"
+            :page-sizes="[5, 10, 15, 20]"
+            :page-size="pageSize"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="totalCount">
+    </el-pagination>
+</div>
+
+
+</body>
+
+
+<script src="../js/axios-0.18.0.js"></script>
+<script src="../js/vue.js"></script>
+<script src="../element-ui/lib/index.js"></script>
+<link rel="stylesheet" href="../element-ui/lib/theme-chalk/index.css">
+<script>
+    Vue.config.productionTip = false;
+    new Vue({
+        el: "#app",
+        data() {
+            return {
+                tableData: [{
+                    GroupID: '33',
+                    StudentID1: '6666',
+                    StudentID2: '6666',
+                    StudentID3: '6666',
+                    StudentID4: '6666',
+                }, {
+                    GroupID: '33',
+                    StudentID1: '6666',
+                    StudentID2: '6666',
+                    StudentID3: '6666',
+                    StudentID4: '6666',
+                }, {
+                    GroupID: '33',
+                    StudentID1: '6666',
+                    StudentID2: '6666',
+                    StudentID3: '6666',
+                    StudentID4: '6666',
+                }, {
+                    GroupID: '33',
+                    StudentID1: '6666',
+                    StudentID2: '6666',
+                    StudentID3: '6666',
+                    StudentID4: '6666',
+                }, {
+                    GroupID: '33',
+                    StudentID1: '6666',
+                    StudentID2: '6666',
+                    StudentID3: '6666',
+                    StudentID4: '6666',
+                }, {
+                    GroupID: '33',
+                    StudentID1: '6666',
+                    StudentID2: '6666',
+                    StudentID3: '6666',
+                    StudentID4: '6666',
+                }, {
+                    GroupID: '33',
+                    StudentID1: '6666',
+                    StudentID2: '6666',
+                    StudentID3: '6666',
+                    StudentID4: '6666',
+                }],
+                currentPage: 1,
+                pageSize: 5,
+                totalCount: 0,
+            }
+        },
+
+        created() {
+            this.init()
+        },
+        methods: {
+            init() {
+                axios({
+                    method: "POST",
+                    url: "http://localhost/team/pagination2?TeamsCurrentPage=" + this.currentPage
+                        + "&TeamsPageSize=" + this.pageSize
+                })
+                    .then(res => {
+                        if (res.data.code === 1) {
+                            this.tableData = res.data.data.records
+                            console.log(this.tableData)
+                            this.totalCount = res.data.data.total
+                        }
+
+                    })
+            },
+            //pagination
+            handleSizeChange(val) {
+                this.pageSize = val
+                this.init()
+            },
+            handleCurrentChange(val) {
+                this.currentPage = val
+                this.init()
+            },
+            JumpToHomePage() {
+                window.location.href = "http://localhost/pages/HomePage.html"
+            }
+
+        },
+    })
+</script>
+</html>

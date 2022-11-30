@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www/thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+<body>
+<!--Navigation-->
+<div id="app">
+    <el-menu
+            :default-active="activeIndex2"
+            class="el-menu-demo"
+            mode="horizontal"
+            @select="handleSelect"
+            background-color="#545c64"
+            text-color="#fff"
+            active-text-color="#ffd04b">
+        <el-menu-item index="1" disabled style="font-size: 20px">Personal Detail</el-menu-item>
+        <el-menu-item index="2" >personal detail</el-menu-item>
+        <el-menu-item index="3" >Search</el-menu-item>
+        <el-menu-item index="4" >MyGroup</el-menu-item>
+        <el-menu-item index="5" >Message</el-menu-item>
+
+    </el-menu>
+    <span>Personal Detail</span>
+</div>
+Hello, Welcome <span th:text="${session.studentName}"></span>
+
+
+</body>
+
+<script src="../js/axios-0.18.0.js"></script>
+<script src="../js/vue.js"></script>
+<script src="../element-ui/lib/index.js"></script>
+<link rel="stylesheet" href="../element-ui/lib/theme-chalk/index.css">
+<script>
+    new Vue({
+        el:"#app",
+        data(){
+            return{
+                activeIndex: '1',
+                activeIndex2: '1'
+            }
+        },
+        methods: {
+            handleSelect(key, keyPath) {
+                console.log(key, keyPath);
+            }
+    }});
+</script>
+</html>

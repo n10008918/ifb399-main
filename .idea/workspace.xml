@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4bf5f70a-0450-4e25-a63c-30d4239360f3" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="CSS File" />
+        <option value="HTML File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="2DBzXD6lz0YwClL1rMlXVTmhtiC" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/pages" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.37326607" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\ifb399\src\main\resources\static\pages" />
+      <recent name="D:\QQ document\javaweb\ifb399\src\main\resources\static\images" />
+      <recent name="D:\QQ document\javaweb\ifb399\src\main\resources\static\css" />
+      <recent name="D:\QQ document\javaweb\ifb399\src\main\resources\static\pages" />
+      <recent name="D:\QQ document\javaweb\ifb399\src\main\resources\static\js" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\ifb399\src\main\resources\static\pages" />
+      <recent name="E:\ifb399\src\main\resources\static\oldPages" />
+      <recent name="D:\QQ document\javaweb\ifb399\src\main\resources\static\oldPages" />
+      <recent name="D:\QQ document\javaweb\ifb399\src\main\resources\static\pages" />
+      <recent name="D:\QQ document\javaweb\ifb399\src\main\resources\static\pages\default" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.controller" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.Ifb399Application">
+    <configuration name="MailTest.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ifb399" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example" />
+      <option name="MAIN_CLASS_NAME" value="com.example.MailTest" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MailTest.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ifb399" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example" />
+      <option name="MAIN_CLASS_NAME" value="com.example.MailTest" />
+      <option name="METHOD_NAME" value="test1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StaffTest.staffTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ifb399" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example" />
+      <option name="MAIN_CLASS_NAME" value="com.example.StaffTest" />
+      <option name="METHOD_NAME" value="staffTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TeamTests.Invitationtest2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ifb399" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example" />
+      <option name="MAIN_CLASS_NAME" value="com.example.TeamTests" />
+      <option name="METHOD_NAME" value="Invitationtest2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TeamTests.testSearchTeam" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ifb399" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example" />
+      <option name="MAIN_CLASS_NAME" value="com.example.TeamTests" />
+      <option name="METHOD_NAME" value="testSearchTeam" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Ifb399Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="ifb399" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.Ifb399Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.MailTest.test1" />
+        <item itemvalue="JUnit.MailTest.contextLoads" />
+        <item itemvalue="JUnit.TeamTests.Invitationtest2" />
+        <item itemvalue="JUnit.StaffTest.staffTest" />
+        <item itemvalue="JUnit.TeamTests.testSearchTeam" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4bf5f70a-0450-4e25-a63c-30d4239360f3" name="Default Changelist" comment="" />
+      <created>1660187303452</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1660187303452</updated>
+      <workItem from="1660187305138" duration="533000" />
+      <workItem from="1660187853711" duration="240000" />
+      <workItem from="1660188108933" duration="11079000" />
+      <workItem from="1660204269877" duration="6466000" />
+      <workItem from="1660215813900" duration="2825000" />
+      <workItem from="1660220161067" duration="634000" />
+      <workItem from="1660269090449" duration="1266000" />
+      <workItem from="1660274054878" duration="32000" />
+      <workItem from="1660278826030" duration="22000" />
+      <workItem from="1660355660707" duration="9000" />
+      <workItem from="1660376469087" duration="12374000" />
+      <workItem from="1660401857158" duration="8425000" />
+      <workItem from="1660440711821" duration="4350000" />
+      <workItem from="1660447752681" duration="13388000" />
+      <workItem from="1660462280963" duration="1619000" />
+      <workItem from="1660532674214" duration="1900000" />
+      <workItem from="1660536391030" duration="2414000" />
+      <workItem from="1660548805581" duration="3452000" />
+      <workItem from="1660553622096" duration="1771000" />
+      <workItem from="1660564352665" duration="69000" />
+      <workItem from="1660564475812" duration="2711000" />
+      <workItem from="1660574774470" duration="7243000" />
+      <workItem from="1660582221965" duration="207000" />
+      <workItem from="1660611883870" duration="3500000" />
+      <workItem from="1660625307687" duration="38000" />
+      <workItem from="1660632875758" duration="129000" />
+      <workItem from="1660639196851" duration="13000" />
+      <workItem from="1660645014928" duration="3719000" />
+      <workItem from="1660652889492" duration="8924000" />
+      <workItem from="1660788130459" duration="66000" />
+      <workItem from="1660790828368" duration="3092000" />
+      <workItem from="1660794359862" duration="326000" />
+      <workItem from="1660887165162" duration="943000" />
+      <workItem from="1660896151207" duration="642000" />
+      <workItem from="1660911898003" duration="2533000" />
+      <workItem from="1660915891095" duration="6055000" />
+      <workItem from="1660961750062" duration="12718000" />
+      <workItem from="1660975654197" duration="994000" />
+      <workItem from="1660982884915" duration="45000" />
+      <workItem from="1660987033518" duration="19000" />
+      <workItem from="1660988742896" duration="3267000" />
+      <workItem from="1661056724318" duration="2154000" />
+      <workItem from="1661132801535" duration="1962000" />
+      <workItem from="1661161796190" duration="9480000" />
+      <workItem from="1661175644137" duration="158000" />
+      <workItem from="1661175915662" duration="5898000" />
+      <workItem from="1661224199427" duration="668000" />
+      <workItem from="1661316774337" duration="13000" />
+      <workItem from="1661652110238" duration="13626000" />
+      <workItem from="1661667921558" duration="6836000" />
+      <workItem from="1661678595011" duration="188000" />
+      <workItem from="1661689344969" duration="662000" />
+      <workItem from="1661738402491" duration="369000" />
+      <workItem from="1661739388006" duration="15000" />
+      <workItem from="1661739661236" duration="87000" />
+      <workItem from="1661745923297" duration="2236000" />
+      <workItem from="1661749971641" duration="5959000" />
+      <workItem from="1661757921262" duration="9361000" />
+      <workItem from="1661768994183" duration="14348000" />
+      <workItem from="1661822896747" duration="17566000" />
+      <workItem from="1661843605149" duration="17000" />
+      <workItem from="1661852941726" duration="7420000" />
+      <workItem from="1661861529136" duration="9001000" />
+      <workItem from="1661899800460" duration="1295000" />
+      <workItem from="1661901556844" duration="119000" />
+      <workItem from="1661904599354" duration="516000" />
+      <workItem from="1662006305388" duration="19592000" />
+      <workItem from="1662129453114" duration="44000" />
+      <workItem from="1662129510819" duration="9687000" />
+      <workItem from="1662171518103" duration="1750000" />
+      <workItem from="1662178013740" duration="429000" />
+      <workItem from="1662178582957" duration="751000" />
+      <workItem from="1662348645705" duration="5600000" />
+      <workItem from="1662354580517" duration="21000" />
+      <workItem from="1662354808478" duration="383000" />
+      <workItem from="1662422692149" duration="8941000" />
+      <workItem from="1663082586206" duration="530000" />
+      <workItem from="1663083139802" duration="5946000" />
+      <workItem from="1663125777546" duration="675000" />
+      <workItem from="1663135954332" duration="15457000" />
+      <workItem from="1663211037839" duration="655000" />
+      <workItem from="1663212156845" duration="3802000" />
+      <workItem from="1663216221522" duration="42000" />
+      <workItem from="1663216360950" duration="4861000" />
+      <workItem from="1663223118437" duration="15970000" />
+      <workItem from="1663240901951" duration="4664000" />
+      <workItem from="1663247225388" duration="5767000" />
+      <workItem from="1663253119378" duration="16000" />
+      <workItem from="1663308249102" duration="780000" />
+      <workItem from="1663309979309" duration="10394000" />
+      <workItem from="1663330126282" duration="5403000" />
+      <workItem from="1663377128607" duration="659000" />
+      <workItem from="1663379294805" duration="499000" />
+      <workItem from="1663384166183" duration="4960000" />
+      <workItem from="1663465801258" duration="4000" />
+      <workItem from="1663465889791" duration="8164000" />
+      <workItem from="1663572755747" duration="6356000" />
+      <workItem from="1663637999209" duration="5067000" />
+      <workItem from="1663732000018" duration="11000" />
+      <workItem from="1663734048913" duration="4000" />
+      <workItem from="1664161224446" duration="10000" />
+      <workItem from="1664511051881" duration="26000" />
+      <workItem from="1664517426519" duration="361000" />
+      <workItem from="1664525691065" duration="2288000" />
+      <workItem from="1664541860629" duration="7435000" />
+      <workItem from="1664594148054" duration="6000" />
+      <workItem from="1664702128615" duration="5731000" />
+      <workItem from="1664715466406" duration="698000" />
+      <workItem from="1664758637429" duration="18906000" />
+      <workItem from="1664791211733" duration="11378000" />
+      <workItem from="1664847071349" duration="4237000" />
+      <workItem from="1664853606489" duration="4134000" />
+      <workItem from="1664858446339" duration="379000" />
+      <workItem from="1664860219701" duration="580000" />
+      <workItem from="1664886986857" duration="9000" />
+      <workItem from="1664939573557" duration="622000" />
+      <workItem from="1665320864188" duration="19000" />
+      <workItem from="1665321873207" duration="174000" />
+      <workItem from="1665322147382" duration="2343000" />
+      <workItem from="1665370274566" duration="25000" />
+      <workItem from="1665407254819" duration="6940000" />
+      <workItem from="1665414502715" duration="6000" />
+      <workItem from="1665414527744" duration="6717000" />
+      <workItem from="1665452583067" duration="491000" />
+      <workItem from="1665457267010" duration="1949000" />
+      <workItem from="1665488087273" duration="10188000" />
+      <workItem from="1665544153560" duration="9808000" />
+      <workItem from="1665559632313" duration="4557000" />
+      <workItem from="1665564240797" duration="15982000" />
+      <workItem from="1665635374893" duration="6457000" />
+      <workItem from="1665809656332" duration="15000" />
+      <workItem from="1665891855798" duration="1489000" />
+      <workItem from="1665908240143" duration="52000" />
+      <workItem from="1665976654545" duration="573000" />
+      <workItem from="1666363294196" duration="92000" />
+      <workItem from="1666408926693" duration="5711000" />
+      <workItem from="1666753262100" duration="210000" />
+      <workItem from="1666753632338" duration="696000" />
+      <workItem from="1667272221796" duration="1940000" />
+      <workItem from="1667362088214" duration="661000" />
+      <workItem from="1667363276296" duration="971000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

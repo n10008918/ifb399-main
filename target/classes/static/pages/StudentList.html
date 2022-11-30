@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>StudentList</title>
+</head>
+<body>
+<div id="app">
+    <el-button type="primary" @click="JumpToHomePage">Back</el-button>
+    <template>
+        <el-table
+                :data="tableData"
+                border
+                style="width: 100%">
+            <el-table-column
+                    prop="id"
+                    label="StudentId"
+            >
+            </el-table-column>
+
+            <el-table-column
+                    prop="firstname"
+                    label="Firstname"
+            >
+            </el-table-column>
+            <el-table-column
+                    prop="major"
+                    label="Major"
+            >
+            </el-table-column>
+            <el-table-column
+                    prop="minor"
+                    label="Minor"
+            >
+            </el-table-column>
+            <el-table-column
+                    prop="skills"
+                    label="Skills"
+            >
+            </el-table-column>
+            <el-table-column
+                    prop="email"
+                    label="Email"
+            >
+            </el-table-column>
+
+            <el-table-column
+                    prop="groupStatus"
+                    label="GroupStatus"
+            >
+                <template slot-scope="scope">
+                    <span v-if="scope.row.groupStatus === 1">
+                        Has team
+                    </span>
+                    <span v-if="scope.row.groupStatus === 0">
+                        No team
+                    </span>
+                </template>
+            </el-table-column>
+
+            <el-table-column
+                    prop="groupId"
+                    label="GroupID"
+            >
+
+            </el-table-column>
+
+        </el-table>
+    </template>
+
+    <!--Pagination(Students Table)-->
+    <el-pagination
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="currentPage"
+            :page-sizes="[5, 10, 15, 20]"
+            :page-size="pageSize"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="totalCount">
+    </el-pagination>
+</div>
+</body>
+
+
+
+<script src="../js/axios-0.18.0.js"></script>
+<script src="../js/vue.js"></script>
+<script src="../element-ui/lib/index.js"></script>
+<link rel="stylesheet" href="../element-ui/lib/theme-chalk/index.css">
+<script>
+    new Vue({
+        el:"#app",
+        data(){
+            return{
+                pageSize:10,
+                currentPage:1,
+                totalCount:0,
+                tableData: [{
+                    surname: "Jack",
+                    firstname: "Phot",
+                    major: 'CS',
+                    minor:'IS',
+                    skills:'',
+                    email: 'Jack123@gmail.com',
+                    groupStatus:'Has Team',
+                    groupID: '199',
+                }, {
+                    surname: "Jack",
+                    firstname: "Phot",
+                    major: 'CS',
+                    minor:'IS',
+                    skills:'',
+                    email: 'Jack123@gmail.com',
+                    groupStatus:'Has Team',
+                    groupID: '199',
+                }, {
+                    surname: "Jack",
+                    firstname: "Phot",
+                    major: 'CS',
+                    minor:'IS',
+                    skills:'',
+                    email: 'Jack123@gmail.com',
+                    groupStatus:'Has Team',
+                    groupID: '199',
+                }, {
+                    surname: "Jack",
+                    firstname: "Phot",
+                    major: 'CS',
+                    minor:'IS',
+                    skills:'',
+                    email: 'Jack123@gmail.com',
+                    groupStatus:'Has Team',
+                    groupID: '199',
+                }, {
+                    surname: "Jack",
+                    firstname: "Phot",
+                    major: 'CS',
+                    minor:'IS',
+                    skills:'',
+                    email: 'Jack123@gmail.com',
+                    groupStatus:'Has Team',
+                    groupID: '199',
+                }, {
+                    surname: "Jack",
+                    firstname: "Phot",
+                    major: 'CS',
+                    minor:'IS',
+                    skills:'',
+                    email: 'Jack123@gmail.com',
+                    groupStatus:'Has Team',
+                    groupID: '199',
+                }, {
+                    surname: "Jack",
+                    firstname: "Phot",
+                    major: 'CS',
+                    minor:'IS',
+                    skills:'',
+                    email: 'Jack123@gmail.com',
+                    groupStatus:'Has Team',
+                    groupID: '199'
+                }],
+
+            }
+        },
+        created() {
+            this.init()
+        },
+        methods:{
+            init(){
+                axios({
+                    method: "GET",
+                    url:"http://localhost/students/pagination2?currentPage=" + this.currentPage
+                        + "&pageSize=" + this.pageSize
+                })
+                .then(res =>{
+                    if(res.data.code ===1){
+                        this.tableData = res.data.data.records
+                        this.totalCount = res.data.data.total
+                        console.log(this.tableData)
+                    }
+                })
+            },
+            handleSizeChange(val){
+                this.pageSize = val;
+                this.init()
+            },
+            handleCurrentChange(val){
+                this.currentPage = val;
+                this.init()
+            },
+            JumpToHomePage(){
+                window.location.href = "http://localhost/pages/HomePage.html"
+            }
+        },
+    })
+</script>
+</html>

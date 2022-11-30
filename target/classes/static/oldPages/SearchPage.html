@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www/thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+<body>
+<!--Navigation-->
+<div id="app">
+    <div class="block">
+        <span class="demonstration">All combined</span>
+        <el-pagination
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
+                :current-page.sync="currentPage4"
+                :page-sizes="[100, 200, 300, 400]"
+                :page-size="100"
+                layout="total, sizes, prev, pager, next, jumper"
+                :total="400">
+        </el-pagination>
+    </div>
+</div>
+
+
+</body>
+
+<script src="../js/axios-0.18.0.js"></script>
+<script src="../js/vue.js"></script>
+<script src="../element-ui/lib/index.js"></script>
+<link rel="stylesheet" href="../element-ui/lib/theme-chalk/index.css">
+<script>
+    new Vue({
+        el:"#app",
+        data(){
+            return{
+                activeIndex: '1',
+                activeIndex2: '1'
+            }
+        },
+        methods: {
+            handleSelect(key, keyPath) {
+                console.log(key, keyPath);
+            }
+
+    }});
+</script>
+</html>

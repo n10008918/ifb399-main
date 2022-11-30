@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Message</title>
+</head>
+<body>
+<!--Navigation-->
+<div id="app">
+    <el-button type="primary" @click="GoBack">Back</el-button>
+    <!--dialogueGroupVisible-->
+    <el-dialog
+            title="GroupInvitation"
+            :visible.sync="dialogGroupInvitationVisible"
+            width="30%">
+        <el-form ref="form" :model="message" label-width="80px">
+            <el-form-item label="Inviter Id">
+                <el-input v-model="message.inviterId" disabled style="width: 150px"></el-input>
+            </el-form-item>
+            <el-form-item label="Name">
+                <el-input v-model="message.studentName" disabled style="width: 150px"></el-input>
+            </el-form-item>
+
+            <el-form-item label="Invitation">
+                <textarea v-model="message.description" disabled style="height: 100px;width: 310px" id="message"
+                          name="message"
+                          　cols="50" rows="10"></textarea>
+            </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+        <el-button @click="closeDialogue">Close</el-button>
+        <el-button type="primary" @click="JudgeToJoin(message.studentName)">Accept</el-button>
+        </span>
+    </el-dialog>
+
+    <!--dialogueApplicantVisible-->
+    <el-dialog
+            title="ApplicantApply"
+            :visible.sync="dialogApplicantApplyVisible"
+            width="30%">
+        <br>
+                <el-form ref="form" :model="message" label-width="125px">
+                    <el-form-item label="Applicant Id">
+                        <el-input v-model="message.applicantId" disabled style="width: 200px"></el-input>
+                    </el-form-item>
+                    <el-form-item label="Applicant Name">
+                        <el-input v-model="message.studentName" disabled style="width: 200px"></el-input>
+                    </el-form-item>
+                    <el-form-item label="Apply Info">
+                        <textarea v-model="message.description" disabled style="height: 100px;width: 310px"
+                                  　cols="50" rows="10"></textarea>
+                    </el-form-item>
+                </el-form>
+
+        <span slot="footer" class="dialog-footer">
+        <el-button @click="closeDialogue">Close</el-button>
+        <el-button type="primary" @click="JudgeToAccept(message.studentName)">Accept</el-button>
+        </span>
+    </el-dialog>
+
+    <!--Table-->
+    <template>
+        <el-table
+                :data="MessageData"
+                style="width: 100%"
+                :row-class-name="tableRowClassName">
+            <el-table-column
+                    prop="invitationStringTime"
+                    label="Date"
+            >
+
+            </el-table-column>
+
+
+            <el-table-column
+                    prop="type"
+                    label="InvitationType">
+            </el-table-column>
+
+            <el-table-column
+                    prop="inviterId"
+                    label="Inviter Id"
+            >
+            </el-table-column>
+
+            <el-table-column
+                    prop="applicantId"
+                    label="applicant Id"
+            >
+            </el-table-column>
+
+            <el-table-column
+                    prop="studentName"
+                    label="studentName"
+            >
+            </el-table-column>
+
+            <el-table-column
+                    label="status"
+            >
+                <template slot-scope="scope">
+                    <span>{{scope.row.status == '0' ? 'unread' : 'have read'}}</span>
+                </template>
+
+            </el-table-column>
+
+            <el-table-column
+                    prop="operation"
+                    label="Operation"
+                    align="center">
+                <template slot-scope="scope">
+                    <el-button type="primary" round v-on:click="openMessage(scope.row) ">Read</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+    </template>
+
+</div>
+
+
+</body>
+<style>
+    .el-table .warning-row {
+        background: oldlace;
+    }
+
+    .el-table .success-row {
+        background: #f0f9eb;
+    }
+</style>
+<script src="../js/axios-0.18.0.js"></script>
+<script src="../js/vue.js"></script>
+<script src="../element-ui/lib/index.js"></script>
+<link rel="stylesheet" href="../element-ui/lib/theme-chalk/index.css">
+<script>
+    Vue.config.productionTip = false;
+    new Vue({
+        el: "#app",
+        data() {
+            return {
+                MessageData: [{
+                    date: '2016-05-02',
+                    senderName: 'Wang',
+                    invitation: 'You have an invitation',
+                }, {
+                    date: '2016-05-04',
+                    senderName: 'Chen',
+                    invitation: 'You have an invitation'
+                }, {
+                    date: '2016-05-01',
+                    senderName: 'Xue',
+                    invitation: 'You have an invitation',
+                }, {
+                    date: '2016-05-03',
+                    senderName: 'Zhao',
+                    invitation: 'You have an invitation'
+                }],
+                message: {
+                    firstname: '',
+                    studentName:'',
+                    invitedId: '',
+                    invitedTeamId: '',
+                    applicantId: '',
+                    skills: '',
+                    description: ''
+                },
+
+                dialogGroupInvitationVisible: false,
+
+                dialogApplicantApplyVisible: false
+
+            }
+        },
+        created() {
+            this.init()
+
+        },
+        methods: {
+            handleSelect(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            tableRowClassName({row, rowIndex}) {
+                if (rowIndex === 1) {
+                    return 'warning-row';
+                } else if (rowIndex === 3) {
+                    return 'success-row';
+                }
+                return '';
+            },
+
+            init() {
+                const studentInfo = window.localStorage.getItem("studentInfo")
+                this.studentDetail = JSON.parse(studentInfo)
+                axios({
+                    method: "GET",
+                    url: "http://localhost/invitations/getInvitations?Id=" + this.studentDetail.id
+                })
+                    .then(res => {
+                        this.MessageData = res.data.data;
+                    })
+
+            },
+            getStudentDetail(id) {
+                axios({
+                    method: "GET",
+                    url: "http://localhost/students/getStudentById?SId=" + id
+                })
+                    .then(res => {
+                        this.message.firstname = res.data.data.firstname
+                        this.message.studentName = res.data.data.studentName
+                    })
+            },
+
+            openMessage(row) {
+                this.changeMessageStatus(row);
+                // var inviterId = row.inviterId;
+                if (row.type === "ApplicantApply") {
+                    // this.getStudentDetail(row.applicantId)
+
+                    this.message.description = row.description
+                    this.message.applicantId = row.applicantId
+                    this.message.invitedTeamId = row.invitedTeamId
+                    this.message.studentName  = row.studentName
+                    this.dialogApplicantApplyVisible = true;
+
+                }
+                if (row.type === "GroupInvitation") {
+
+                    this.message.studentName  = row.studentName
+                    // this.getStudentDetail(row.inviterId)
+                    this.message.id = row.id
+                    this.message.inviterId = row.inviterId
+                    this.message.invitedId = row.invitedId
+                    this.message.invitedTeamId = row.invitedTeamId
+                    this.message.description = row.description
+                    this.message.applicantId = row.applicantId
+                    this.dialogGroupInvitationVisible = true;
+                }
+
+
+            },
+            changeMessageStatus(row){
+                axios({
+                    method: "POST",
+                    url: "http://localhost/invitations/updateInvitationStatus",
+                    data: row
+                })
+                .then(res =>{
+                    res.data
+                })
+            },
+            closeDialogue(){
+                window.location.href = 'Message.html'
+                this.dialogApplicantApplyVisible = false
+                this.dialogGroupApplyVisible = false
+            },
+            approveApply(){
+                axios({
+                    method: "POST",
+                    url: "http://localhost/invitations/approveApplicant",
+                    data: this.message
+                })
+                .then(res =>{
+                    if(res.data.code === 1){
+                        this.$message.success('approve success !!!');
+                    }else{
+                        this.$message.error(res.data.msg);
+                    }
+
+                })
+                this.dialogApplicantApplyVisible = false;
+
+            },
+
+            acceptInvitation() {
+                axios({
+                    method: "POST",
+                    url: "http://localhost/invitations/approveInviation",
+                    data: this.message
+                })
+                    .then(res => {
+                        if (res.data.code === 1) {
+                            this.$message.success('Join success');
+                        } else {
+                            this.$message.error(res.data.msg);
+                        }
+
+                    })
+
+                this.dialogGroupInvitationVisible = false;
+            },
+
+            JudgeToJoin(username) {
+                this.$confirm('Agree to join ' + username +'\'s team ?','Team Confirmation',{
+                    confirmButtonText:'Agree',
+                    cancelButtonText:'Let me think...',
+                    type: 'warning'
+                }).then(()=>{
+                    axios({
+                        method: "GET",
+                        url: "http://localhost/students/getStudentById?SId=" + this.studentDetail.id
+                    })
+                        .then(res => {
+                            if (res.data.data.groupStatus !== 1) {
+                                this.acceptInvitation()
+                                this.dialogApplicantApplyVisible = false
+                                this.dialogGroupApplyVisible = false
+                                this.init()
+                                // window.location.href = "Message.html"
+                            } else {
+                                this.$message.error('You have already had a team!');
+                            }
+
+                        })
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: 'Have cancelled'
+                    });
+                });
+
+
+            },
+            JudgeToAccept(username){
+                this.$confirm('Agree '+ username + ' to join your team?','Request Confirmation',{
+                    confirmButtonText:'Agree',
+                    cancelButtonText:'Let me think...',
+                    type: 'warning'
+                }).then(() => {
+                    axios({
+                        method: "GET",
+                        url: "http://localhost/students/getStudentById?SId=" + this.message.applicantId
+                    })
+                        .then(res =>{
+                            if (res.data.data.groupStatus !== 1) {
+                                this.approveApply()
+                                this.dialogApplicantApplyVisible = false
+                                this.dialogGroupApplyVisible = false
+                                // window.location.href = "Message.html"
+                                this.init()
+                            } else {
+                                this.$message.error('The applicant has already had a team!');
+                            }
+                        })
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: 'Have cancelled'
+                    });
+                });
+
+            },
+            GoBack(){
+                window.location.href = "TeamDashboard.html"
+            },
+
+        },
+
+
+    })
+    ;
+</script>
+</html>

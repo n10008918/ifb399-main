@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.StudentDao">
+    <resultMap id="studentResultMap" type="com.example.domain.Student">
+        <result column="Self_Introduction" property="selfIntroduction"/>
+    </resultMap>
+
+    <update id="editSelfInfo">
+        update student
+        <set>
+            Skills = #{skills},
+            FirstName = #{firstname},
+            Email = #{email},
+            Major = #{major},
+            Minor = #{minor},
+            Skills = #{skills},
+            Self_Introduction = #{selfIntroduction}
+        </set>
+        where id = #{id}
+    </update>
+</mapper>
