@@ -1,5 +1,27 @@
 # ifb399-main
-User Guide
+# Installation Guide
+Installation Steps
+
+    1.If zipped, extract the downloadedproject artefact.
+
+    2.Use MySQLand log in as the root user.
+
+    3.Connect or add the database in the project labelled “tas_db”. 
+
+    4.Use Intellij(recommended) or another IDE to open the project folder.
+
+    5.Go to pom.xml and wait for MAVEN to build.
+
+    6.Go to “ifb399Application”, right click and run. For other IDEs, run program as per the IDE function.
+
+    7.With the application running, using a browser of your choice, visit “localhost://pages/login.html”.
+
+    8.If installation is successful, you will have arrived at the login page.
+ 
+Enjoy the Group Allocation System at your leisure.
+
+
+# User Guide
 
 ![image](https://user-images.githubusercontent.com/81293394/207599220-3dd499f3-9616-420d-aaec-3e080c5b5882.png)
 
