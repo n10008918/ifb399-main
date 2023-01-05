@@ -1,4 +1,19 @@
 # ifb399-main
+# Final Report
+[FinalReport.pdf](https://github.com/n10008918/ifb399-main/files/10349341/FinalReport.pdf)
+
+# Supporting documents 
+[ArtefactAgreement.pdf](https://github.com/n10008918/ifb399-main/files/10349342/ArtefactAgreement.pdf)
+[TeamAgreement.pdf](https://github.com/n10008918/ifb399-main/files/10349343/TeamAgreement.pdf)
+
+[UI Layout Design Document.pdf](https://github.com/n10008918/ifb399-main/files/10349350/UI.Layout.Design.Document.pdf)
+[Design and Architecture Document.pdf](https://github.com/n10008918/ifb399-main/files/10349351/Design.and.Architecture.Document.pdf)
+[Project Function Breakdown.pdf](https://github.com/n10008918/ifb399-main/files/10349352/Project.Function.Breakdown.pdf)
+[Project Vocabulary Document.pdf](https://github.com/n10008918/ifb399-main/files/10349353/Project.Vocabulary.Document.pdf)
+
+[Risk Management Document.pdf](https://github.com/n10008918/ifb399-main/files/10349355/Risk.Management.Document.pdf)
+[Project Management & Release Plan Document.pdf](https://github.com/n10008918/ifb399-main/files/10349356/Project.Management.Release.Plan.Document.pdf)
+
 # Installation Guide
 Installation Steps
 
